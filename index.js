@@ -11,15 +11,17 @@ dotenv.config({path: "./.env"}) ;
 
 const { DB_HOST , DB_USERNAME , DB_PASSWORD } = process.env ; 
 
-const sequelize = new Sequelize(
-    'defaultdb', 
-    DB_USERNAME , 
-    DB_PASSWORD , 
-    {
-        host : DB_HOST , 
-        dialect : "postgres"
-    }  
-)
+// const sequelize = new Sequelize(
+//     'defaultdb', 
+//     DB_USERNAME , 
+//     DB_PASSWORD , 
+//     {
+//         host : DB_HOST , 
+//         dialect : "postgres"
+//     }  
+// )
+
+const sequelize = new Sequelize("postgresql://doadmin:AVNS_0Gvtyayb90bkTjgAXCj@db-postgresql-fra1-38922-do-user-13073615-0.b.db.ondigitalocean.com:25060/defaultdb?sslmode=require")
 
 
 sequelize.authenticate().then(() => {
