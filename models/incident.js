@@ -32,6 +32,10 @@ const Incident = sequelize.define("incidents" , {
         type : DataTypes.STRING , 
         allowNull : false , 
     } , 
+    date : {
+        type : DataTypes.DATE , 
+        defaultValue: Date.now 
+    }, 
     weather_report: {
         type : DataTypes.JSON
     }
