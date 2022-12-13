@@ -16,6 +16,7 @@ exports.getIncident = async ( req , res  ) => {
                 res.status(200).json({data})
             })
             .catch ( err => {
+                console.log ( "There was an error : " , err ) ; 
                 res.status(404).json({message : "Not found"})
             })
 
