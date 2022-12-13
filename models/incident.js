@@ -10,6 +10,7 @@ const sequelize = new Sequelize(
     DB_PASSWORD , 
     {
         host : DB_HOST , 
+        post : 25060 ,
         dialect : "postgres"
     }  
 )
