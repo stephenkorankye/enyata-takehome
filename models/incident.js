@@ -2,20 +2,11 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 
 
-const { DB_USERNAME , DB_HOST , DB_PASSWORD } = process.env ; 
+const { DB_PASSWORD } = process.env ; 
 
-// const sequelize = new Sequelize(
-//     'defaultdb', 
-//     DB_USERNAME , 
-//     DB_PASSWORD , 
-//     {
-//         host : DB_HOST , 
-//         dialect : "postgres"
-//     }  
-// )
 
-const sequelize = new Sequelize("postgresql://doadmin:AVNS_0Gvtyayb90bkTjgAXCj@db-postgresql-fra1-38922-do-user-13073615-0.b.db.ondigitalocean.com:25060/defaultdb?sslmode=no-verify")
 
+const sequelize = new Sequelize(`postgresql://doadmin:${DB_PASSWORD}@db-postgresql-fra1-38922-do-user-13073615-0.b.db.ondigitalocean.com:25060/defaultdb?sslmode=no-verify`)
 
 sequelize.authenticate().then(() => {
    console.log('Connection has been established successfully.');
