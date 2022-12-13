@@ -14,7 +14,7 @@ const { DB_USERNAME , DB_HOST , DB_PASSWORD } = process.env ;
 //     }  
 // )
 
-const sequelize = new Sequelize("postgresql://doadmin:AVNS_0Gvtyayb90bkTjgAXCj@db-postgresql-fra1-38922-do-user-13073615-0.b.db.ondigitalocean.com:25060/defaultdb?sslmode=require")
+const sequelize = new Sequelize("postgresql://doadmin:AVNS_0Gvtyayb90bkTjgAXCj@db-postgresql-fra1-38922-do-user-13073615-0.b.db.ondigitalocean.com:25060/defaultdb?sslmode=no-verify")
 
 
 sequelize.authenticate().then(() => {
