@@ -2,8 +2,6 @@ const axios = require("axios") ;
 const sequelize = require("sequelize") ; 
 const Incident = require("../models/incident");
 
-let weather = [] ; 
-
 
 const key = process.env.API_KEY ; 
 let url = `https://api.openweathermap.org/data/2.5/weather?q=` ; 
@@ -24,6 +22,7 @@ exports.getIncident = async ( req , res  ) => {
     }
     catch ( err ) {
         console.log ( "There was an error : " , err ) ; 
+        res.status ( 404 ).json({ message : err } ) ; 
     }
     
 }
@@ -64,14 +63,6 @@ exports.addIncident = async ( req , res ) => {
             .then ( ans => {
                 const { data } = ans ; 
 
-                weather.push({
-                    client_id , 
-                    incident_desc , 
-                    city , 
-                    country , 
-                    weather_report : data 
-                })
-
                 Incident.create({
                     client_id , 
                     incident_desc , 
@@ -79,12 +70,10 @@ exports.addIncident = async ( req , res ) => {
                     country , 
                     weather_report : data 
                 }).then ( ans => {
-                    console.log ( "Data Inserted ") ; 
                     res.status ( 200 ).json({success : true , message : "Saved Successfully"})
 
                 })
                 .catch ( err => {
-                    console.log ( "Error inserting Data : " , err ) ; 
                     res.status ( 404 ).json({success : false , message : err })
                 })
 
@@ -102,7 +91,7 @@ exports.addIncident = async ( req , res ) => {
 
     }
     catch ( err ) {
-        console.log ( "Error Posting : " , err ) ; 
+        console.log ( "Error Adding data : " , err ) ; 
         res.status ( 500 ).json({message : err })
     }
    
