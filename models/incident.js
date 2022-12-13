@@ -1,12 +1,11 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
-const PORT=3000
-DB_HOST='127.0.0.1' , 
-DB_USERNAME='postgres' , 
-DB_PASSWORD='excessive' 
+
+
+const { DB_USERNAME , DB_HOST , DB_PASSWORD } = process.env ; 
 
 const sequelize = new Sequelize(
-    'enyata_challenge_db', 
+    'defaultdb', 
     DB_USERNAME , 
     DB_PASSWORD , 
     {

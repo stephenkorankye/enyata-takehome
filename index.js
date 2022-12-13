@@ -12,7 +12,7 @@ dotenv.config({path: "./.env"}) ;
 const { DB_HOST , DB_USERNAME , DB_PASSWORD } = process.env ; 
 
 const sequelize = new Sequelize(
-    'enyata_challenge_db', 
+    'defaultdb', 
     DB_USERNAME , 
     DB_PASSWORD , 
     {
