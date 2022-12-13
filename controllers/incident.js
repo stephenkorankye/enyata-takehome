@@ -1,5 +1,6 @@
 const axios = require("axios") ; 
-
+const sequelize = require("sequelize") ; 
+const Incident = require("../models/incident");
 
 let weather = [] ; 
 
@@ -12,7 +13,13 @@ let url = `https://api.openweathermap.org/data/2.5/weather?q=` ;
 exports.getIncident = async ( req , res  ) => {
     try{
 
-        res.status(200).json({data : weather})
+        Incident.findAll()
+            .then ( data => {
+                res.status(200).json({data})
+            })
+            .catch ( err => {
+                res.status(404).json({message : "Not found"})
+            })
 
     }
     catch ( err ) {
@@ -65,7 +72,22 @@ exports.addIncident = async ( req , res ) => {
                     weather_report : data 
                 })
 
-                res.status ( 200 ).json({success : true , message : "Saved Successfully"})
+                Incident.create({
+                    client_id , 
+                    incident_desc , 
+                    city , 
+                    country , 
+                    weather_report : data 
+                }).then ( ans => {
+                    console.log ( "Data Inserted ") ; 
+                    res.status ( 200 ).json({success : true , message : "Saved Successfully"})
+
+                })
+                .catch ( err => {
+                    console.log ( "Error inserting Data : " , err ) ; 
+                    res.status ( 404 ).json({success : false , message : err })
+                })
+
 
             })
             .catch ( err => {
